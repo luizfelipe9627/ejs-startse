@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+      <%= titulo %>
+    </title>
+  </head>
+
+  <body>
+    Aprendendo EJS no Tech Academy.
+    
+    <ul>
+      <% for(let i = 0; i < artigos.length; i++) { %>
+        <li>
+          <a href="./artigos/<%= artigos[i].id %>">
+            <%= artigos[i].titulo %>
+          </a>
+        </li>
+      <% } %>
+    </ul>
+
+    <%- include('../layout/rodape.ejs') %>
+  </body>
+</html>
