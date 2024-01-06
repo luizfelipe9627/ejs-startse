@@ -2,7 +2,7 @@
 import express from "express";
 
 // Está importando todos os arquivos do artigos e nomeando os dois em um para Artigos.
-import * as funcoesArtigos from "./src/data/artigos.js";
+import * as funcoesArtigos from "../data/artigos.js";
 
 // Variável constante que é responsável por chamar o express.
 const app = express();
@@ -11,7 +11,7 @@ const app = express();
 app.set("view engine", "ejs");
 
 // Está dizendo o diretório da onde está as views.
-app.set("views", "./src/views");
+app.set("views", "views");
 
 // Criado uma variável constante responsável por armazenar a porta. Basicamente irá definir uma porta, se ele não conseguir ele vai definir em 3000.
 // Para o Heroku reconhecer deve se escrever "PORT" em inglês mesmo.
