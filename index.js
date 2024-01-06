@@ -2,7 +2,7 @@
 import express from "express";
 
 // Está importando todos os arquivos do artigos e nomeando os dois em um para Artigos.
-import * as funcoesArtigos from "../data/artigos.js";
+import * as funcoesArtigos from "./src/data/artigos.js";
 
 // Variável constante que é responsável por chamar o express.
 const app = express();
