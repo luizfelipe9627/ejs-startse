@@ -1,21 +1,21 @@
 // Está importando o Express de um outro diretório.
-import express from 'express';
+import express from "express";
 
 // Está importando todos os arquivos do artigos e nomeando os dois em um para Artigos.
-import * as funcoesArtigos from './artigos.js';
+import * as funcoesArtigos from "../data/artigos.js";
 
 // Variável constante que é responsável por chamar o express.
 const app = express();
 
 // Está avisando ao JS que vai ser utilizado uma engine responsável por renderizar os templates de HTML's.
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
 
 // Está dizendo o diretório da onde está as views.
-app.set('views', './views');
+app.set("views", "./src/views");
 
 // Criado uma variável constante responsável por armazenar a porta. Basicamente irá definir uma porta, se ele não conseguir ele vai definir em 3000.
 // Para o Heroku reconhecer deve se escrever "PORT" em inglês mesmo.
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
 // Quando o listen "escutar" essa porta vai executar a função criada.
 app.listen(PORT, () => {
@@ -25,16 +25,16 @@ app.listen(PORT, () => {
 
 // Irá obter a resposta, e atribuir no direcionamento definido.
 // O get é utilizado para obter uma lista ou detalhes de usuários. Usa o status 200.
-app.get('/', (requisicao, resposta) => {
+app.get("/", (requisicao, resposta) => {
   // Uma variável constante que está recebendo os artigos que estão presentes na array Artigos de outro arquivo.
   const artigos = funcoesArtigos.obterArtigos();
 
   // Quando chegar na página raiz irá retornar e renderizar o template HTML que está definido na pasta views/pages/home.
   // E no objeto está puxando a variável criada dentro da tag title no arquivo home e atribuindo um valor a ele, e depois a virgula está os artigos para evitar de ocorrer algum erro.
-  return resposta.render('pages/home', {titulo: 'EJS', artigos});
+  return resposta.render("../views/pages/home.ejs", { titulo: "EJS", artigos });
 });
 
-app.get('/artigos/:artigoId', (requisicao, resposta) => {
+app.get("/artigos/:artigoId", (requisicao, resposta) => {
   // O params é um objeto que contém propriedades mapeadas para os “parâmetros” da rota nomeada. Por exemplo, se você tiver a rota / aluno /: id, a propriedade “id” estará disponível como req.params.id.
   const artigoId = requisicao.params.artigoId;
 
@@ -43,10 +43,9 @@ app.get('/artigos/:artigoId', (requisicao, resposta) => {
 
   // Utilizado um operador ternário, bem parecido com o IF e ELSE.
   // Se artigo for true(no caso não estiver vazio) ele vai retornar Artigo não encontrado.
-  const titulo = {artigo} ? artigo.titulo : 'Artigo não encontrado';
-  
+  const titulo = { artigo } ? artigo.titulo : "Artigo não encontrado";
+
   // Quando chegar na página definida irá retornar e renderizar o template HTML que está definido na pasta views/pages/artigo.
   // E no objeto está puxando a variável titulo e puxando o artigo para melhor funcionamento.
-  return resposta.render('pages/artigos', {titulo, artigo});
+  return resposta.render("pages/artigos", { titulo, artigo });
 });
-
