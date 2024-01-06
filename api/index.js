@@ -11,7 +11,7 @@ const app = express();
 app.set("view engine", "ejs");
 
 // Está dizendo o diretório da onde está as views.
-app.set("views", "./views");
+app.set("views", "views");
 
 // Criado uma variável constante responsável por armazenar a porta. Basicamente irá definir uma porta, se ele não conseguir ele vai definir em 3000.
 // Para o Heroku reconhecer deve se escrever "PORT" em inglês mesmo.
